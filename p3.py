@@ -63,5 +63,5 @@ ax.legend(title="Country")
 plt.tight_layout()
 st.pyplot(fig)
 
-st.write("Visually, the second plot is much easier to view. The dotted red line (trend line) has been removed as it is unnecessary. Data is represented using a line plot which is much cleaner and consistent. A legend is included, however it is located inside the plot so it is readily available regardless of the size of the plot. The plot also takes advantage of the Seaborn toolset.")
+st.write("Visually, the second plot is much easier to view. The dotted red line (trend line) has been removed as it is unnecessary. Data is represented using a line plot which is much cleaner and consistent. A legend is included, however it is located inside the plot so it is readily available regardless of the size of the plot. The plot also takes advantage of the Seaborn toolset  Axis labels are clear and descriptive.")
 
