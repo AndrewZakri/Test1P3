@@ -47,3 +47,6 @@ plt.ylabel("CO2 Emissions (in million metric tons)")
 plt.legend(title="Country")
 plt.tight_layout()
 plt.show()
+
+# Add plot to streamlit
+st.pyplot(fig)
