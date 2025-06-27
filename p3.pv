@@ -1,0 +1,49 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+import streamlit as st
+
+# WORST possible plot
+
+# Load dataset from BTS
+df = pd.read_csv("co2_emission.csv")
+
+# Filter for top 5 countries by total emissions
+top5 = df.groupby('Country')['CO2 Emissions'].sum().nlargest(5).index
+subset = df[df['Country'].isin(top5)]
+
+# WORST Plot
+plt.figure(figsize=(15, 10))
+for country in top5:
+    country_data = subset[subset['Country'] == country]
+    plt.plot(country_data['Year'], country_data['CO2 Emissions'], label=country, linestyle='--', marker='x', linewidth=5)
+
+plt.title("CO2 Emissions Over Time (Top 5 Countries)")
+plt.xlabel("Year")
+plt.ylabel("Emissions")
+plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+plt.grid(True, linestyle='--', linewidth=1)
+plt.xticks(rotation=90, fontsize=8)
+plt.yticks(fontsize=8)
+plt.axhline(1000000, color='red', linestyle=':', linewidth=3)
+plt.show()
+
+# Add plot to streamlit
+st.pyplot(fig)
+
+# IMPROVED version
+
+# Set style
+sns.set(style="whitegrid")
+
+# Prepare summary data
+plt.figure(figsize=(10, 6))
+sns.lineplot(data=subset, x="Year", y="CO2 Emissions", hue="Country", palette="Set2")
+
+# Titles and labels
+plt.title("CO2 Emissions Over Time (Top 5 Countries)", fontsize=16)
+plt.xlabel("Year")
+plt.ylabel("CO2 Emissions (in million metric tons)")
+plt.legend(title="Country")
+plt.tight_layout()
+plt.show()
