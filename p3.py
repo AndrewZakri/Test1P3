@@ -3,6 +3,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 
+st.title("Test 1, Problem 3")
+st.subheader("The WORST possible plot: A poorly designed visualization that misrepresents the data, is cluttered, lacks readability, or is misleading.")
 # WORST possible plot
 
 # Load dataset from BTS
@@ -38,6 +40,10 @@ ax.axhline(1000000, color='red', linestyle=':', linewidth=3)
 st.pyplot(fig)
 plt.clf()
 
+st.write("The first plot is visually confusing. Data is represented in dashed lines and large markers (X). The line width is set at 5, which is too large. A legend is included, but it is outside the plot. This could cause issues when presenting the plot, as it could reduce the size of the plot in order to include the legend. The legend could also be excluded or partially removed due to lack of space (on the dashboard). A trend line (red dashed line) is included and is unnecessary. This line provides little value as it is set at zero and most if not all countries will have data above the line, especially in after the year 1900.")
+
+st.subheader("The IMPROVED version: A refined visualization that enhances clarity, conveys insight effectively, and follows best practices in visual analytics.")
+
 # IMPROVED version
 
 # Set style
@@ -56,3 +62,6 @@ ax.legend(title="Country")
 # Add plot to streamlit
 plt.tight_layout()
 st.pyplot(fig)
+
+st.write("Visually, the second plot is much easier to view. The dotted red line (trend line) has been removed as it is unnecessary. Data is represented using a line plot which is much cleaner and consistent. A legend is included, however it is located inside the plot so it is readily available regardless of the size of the plot. The plot also takes advantage of the Seaborn toolset.")
+
