@@ -13,20 +13,26 @@ top5 = df.groupby('Country')['CO2 Emissions'].sum().nlargest(5).index
 subset = df[df['Country'].isin(top5)]
 
 # WORST Plot
-plt.figure(figsize=(15, 10))
+fig, ax = plt.subplots(figsize=(15, 10))
 for country in top5:
     country_data = subset[subset['Country'] == country]
-    plt.plot(country_data['Year'], country_data['CO2 Emissions'], label=country, linestyle='--', marker='x', linewidth=5)
+    ax.plot(
+        country_data['Year'], 
+        country_data['CO2 Emissions'], 
+        label=country, 
+        linestyle='--', 
+        marker='x', 
+        linewidth=5
+    )
 
-plt.title("CO2 Emissions Over Time (Top 5 Countries)")
-plt.xlabel("Year")
-plt.ylabel("Emissions")
-plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-plt.grid(True, linestyle='--', linewidth=1)
-plt.xticks(rotation=90, fontsize=8)
-plt.yticks(fontsize=8)
-plt.axhline(1000000, color='red', linestyle=':', linewidth=3)
-plt.show()
+ax.set_title("CO2 Emissions Over Time (Top 5 Countries)")
+ax.set_xlabel("Year")
+ax.set_ylabel("Emissions")
+ax.legend(loc='center left', bbox_to_anchor=(1, 0.5))
+ax.grid(True, linestyle='--', linewidth=1)
+ax.set_xticklabels(country_data['Year'], rotation=90, fontsize=8)
+ax.tick_params(axis='y', labelsize=8)
+ax.axhline(1000000, color='red', linestyle=':', linewidth=3)
 
 # Add plot to streamlit
 st.pyplot(fig)
