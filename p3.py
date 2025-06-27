@@ -36,6 +36,7 @@ ax.axhline(1000000, color='red', linestyle=':', linewidth=3)
 
 # Add plot to streamlit
 st.pyplot(fig)
+plt.clf()
 
 # IMPROVED version
 
