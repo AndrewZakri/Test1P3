@@ -43,16 +43,15 @@ st.pyplot(fig)
 sns.set(style="whitegrid")
 
 # Prepare summary data
-plt.figure(figsize=(10, 6))
-sns.lineplot(data=subset, x="Year", y="CO2 Emissions", hue="Country", palette="Set2")
+fig, ax = plt.subplots(figsize=(10, 6))
+sns.lineplot(data=subset, x="Year", y="CO2 Emissions", hue="Country", palette="Set2", ax=ax)
 
 # Titles and labels
-plt.title("CO2 Emissions Over Time (Top 5 Countries)", fontsize=16)
-plt.xlabel("Year")
-plt.ylabel("CO2 Emissions (in million metric tons)")
-plt.legend(title="Country")
-plt.tight_layout()
-plt.show()
+ax.set_title("CO2 Emissions Over Time (Top 5 Countries)", fontsize=16)
+ax.set_xlabel("Year")
+ax.set_ylabel("CO2 Emissions (in million metric tons)")
+ax.legend(title="Country")
 
 # Add plot to streamlit
+plt.tight_layout()
 st.pyplot(fig)
